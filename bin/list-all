@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+set -e
+set -o pipefail
+
 releases_path=https://api.github.com/repos/kubernetes/helm/releases
 cmd="curl -s"
 if [ -n "$OAUTH_TOKEN" ]; then
