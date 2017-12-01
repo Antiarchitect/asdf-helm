@@ -6,4 +6,4 @@ before_script:
   - git clone https://github.com/asdf-vm/asdf.git
   - . asdf/asdf.sh
 script:
-  - asdf plugin-test helm https://github.com/Antiarchitect/asdf-helm.git "helm version --client --short"
+  - asdf plugin-test helm https://github.com/Antiarchitect/asdf-helm.git 'helm version --client --short'
