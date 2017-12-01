@@ -1,8 +1,9 @@
 language: c
-script: asdf plugin-test helm https://github.com/Antiarchitect/asdf-helm.git
-before_script:
-  - git clone https://github.com/asdf-vm/asdf.git --branch v0.4.0
-  - . asdf/asdf.sh
 os:
   - linux
   - osx
+before_script:
+  - git clone https://github.com/asdf-vm/asdf.git
+  - . asdf/asdf.sh
+script:
+  - asdf plugin-test helm https://github.com/Antiarchitect/asdf-helm.git "helm version"
