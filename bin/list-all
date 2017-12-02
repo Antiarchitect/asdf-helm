@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
-cmd="curl -s https://api.github.com/repos/kubernetes/helm/releases"
+releases_path=https://api.github.com/repos/kubernetes/helm/releases
+cmd="curl -s"
+if [ -n "$GITHUB_API_TOKEN" ]; then
+  cmd="$cmd -H 'Authorization: token $GITHUB_API_TOKEN'"
+fi
+cmd="$cmd $releases_path"
 
 # stolen from https://github.com/rbenv/ruby-build/pull/631/files#diff-fdcfb8a18714b33b07529b7d02b54f1dR942
 function sort_versions() {
