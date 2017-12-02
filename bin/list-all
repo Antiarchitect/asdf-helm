@@ -1,14 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
-set -o pipefail
-
-releases_path=https://api.github.com/repos/kubernetes/helm/releases
-cmd="curl -s"
-if [ -n "$OAUTH_TOKEN" ]; then
-  cmd="$cmd -H 'Authorization: token $OAUTH_TOKEN'"
-fi
-cmd="$cmd $releases_path"
+cmd="curl -s https://api.github.com/repos/kubernetes/helm/releases"
 
 # stolen from https://github.com/rbenv/ruby-build/pull/631/files#diff-fdcfb8a18714b33b07529b7d02b54f1dR942
 function sort_versions() {
