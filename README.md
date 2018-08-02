@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/Antiarchitect/asdf-helm.svg?branch=master)](https://travis-ci.org/Antiarchitect/asdf-helm)
 
-[Helm](https://github.com/kubernetes/helm) plugin for [asdf](https://github.com/asdf-vm/asdf) version manager
+[Helm](https://github.com/helm/helm) plugin for [asdf](https://github.com/asdf-vm/asdf) version manager
 
 ## Install
 

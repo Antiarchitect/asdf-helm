@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-releases_path=https://api.github.com/repos/kubernetes/helm/releases
+releases_path=https://api.github.com/repos/helm/helm/releases
 cmd="curl -s"
 if [ -n "$GITHUB_API_TOKEN" ]; then
   cmd="$cmd -H 'Authorization: token $GITHUB_API_TOKEN'"
