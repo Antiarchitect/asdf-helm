@@ -46,8 +46,7 @@ get_download_url() {
   local version="$1"
   local platform="$2"
   local filename="$(get_filename $version $platform)"
-
-  echo "https://storage.googleapis.com/kubernetes-helm/${filename}"
+  echo "https://get.helm.sh/${filename}"
 }
 
 install_helm $ASDF_INSTALL_TYPE $ASDF_INSTALL_VERSION $ASDF_INSTALL_PATH
