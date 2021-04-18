@@ -49,6 +49,7 @@ getArch() {
     i686) ARCH="386";;
     i386) ARCH="386";;
   esac
+  echo "$ARCH"
 }
 
 get_filename() {
