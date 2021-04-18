@@ -7,7 +7,7 @@ install_helm() {
   local install_type=$1
   local version=$2
   local install_path=$3
-  local platform="$(uname | tr '[:upper:]' '[:lower:]')-amd64"
+  local platform="$(uname | tr '[:upper:]' '[:lower:]')-$(getArch)"
   local bin_install_path="$install_path/bin"
   local binary_path="$bin_install_path/helm"
   local download_url=$(get_download_url $version $platform)
@@ -33,6 +33,23 @@ install_helm() {
   tar -zxf ${download_path} --directory $tmp_download_dir
   cp ${tmp_download_dir}/${platform}/helm ${bin_install_path}
   chmod +x ${binary_path}
+}
+
+
+# getArch discovers the architecture for this system.
+getArch() {
+  ARCH=$(uname -m)
+  case $ARCH in
+    armv5*) ARCH="armv5";;
+    armv6*) ARCH="armv6";;
+    armv7*) ARCH="arm";;
+    aarch64) ARCH="arm64";;
+    x86) ARCH="386";;
+    x86_64) ARCH="amd64";;
+    i686) ARCH="386";;
+    i386) ARCH="386";;
+  esac
+  echo "$ARCH"
 }
 
 get_filename() {
