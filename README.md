@@ -1,6 +1,6 @@
 # asdf-helm
 
-[![Build Status](https://travis-ci.org/Antiarchitect/asdf-helm.svg?branch=master)](https://travis-ci.org/Antiarchitect/asdf-helm)
+![GitHub Actions Status](https://github.com/Antiarchitect/asdf-helm/workflows/Test/badge.svg?branch=master)
 
 [Helm](https://github.com/helm/helm) plugin for [asdf](https://github.com/asdf-vm/asdf) version manager
 
