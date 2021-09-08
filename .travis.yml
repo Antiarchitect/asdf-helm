@@ -1,9 +1,8 @@
-language: c
-os:
-  - linux
-  - osx
+language: bash
+script: asdf plugin-test helm $TRAVIS_BUILD_DIR 'helm --version'
 before_script:
   - git clone https://github.com/asdf-vm/asdf.git
   - . asdf/asdf.sh
-script:
-  - asdf plugin-test helm https://github.com/Antiarchitect/asdf-helm.git
+os:
+  - linux
+  - osx
