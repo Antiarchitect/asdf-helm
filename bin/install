@@ -22,21 +22,6 @@ install_helm() {
 
   local download_path="$tmp_download_dir/$(get_filename $version $platform)"
 
-  echo "Checking if download url ${download_url} is valid"
-  local http_status=$(curl -s -o /dev/null -I -w "%{http_code}" "$download_url")
-
-  if [[ "$http_status" != "200" ]] ; then
-    echo "Unable to download helm binary"
-    if [[ "$operating_system" == "darwin" ]] && [[ "$arch" == "arm64" ]] ; then
-      echo "M1 mac detected, couldn't find arm64 version, falling back to rosetta compatible amd64 version."
-      local platform="darwin-amd64"
-      local download_url=$(get_download_url $version $platform)
-    else
-      echo "Fast failing"
-      exit 1
-    fi
-  fi
-
   echo "Downloading helm from ${download_url} to ${download_path}"
   curl -Lo $download_path $download_url
 
@@ -60,6 +45,7 @@ getArch() {
     armv5*) ARCH="armv5";;
     armv6*) ARCH="armv6";;
     armv7*) ARCH="arm";;
+    arm64) ARCH="amd64";;
     aarch64) ARCH="arm64";;
     x86) ARCH="386";;
     x86_64) ARCH="amd64";;
