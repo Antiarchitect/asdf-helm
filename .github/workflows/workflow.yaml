@@ -24,4 +24,4 @@ jobs:
       - name: asdf plugin test
         uses: asdf-vm/actions/plugin-test@v1.1.0
         with:
-          command: helm --version
+          command: helm version
