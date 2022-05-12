@@ -23,7 +23,7 @@ install_helm() {
   local download_path="$tmp_download_dir/$(get_filename $version $platform)"
 
   echo "Downloading helm from ${download_url} to ${download_path}"
-  curl -Lo $download_path $download_url
+  curl --retry 10 --retry-delay 2 -Lo $download_path $download_url
 
   echo "Creating bin directory"
   mkdir -p "${bin_install_path}"
