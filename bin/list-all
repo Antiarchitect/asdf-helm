@@ -5,7 +5,7 @@ cmd="curl --retry 10 --retry-delay 2 -s"
 if [ -n "$GITHUB_API_TOKEN" ]; then
   cmd="$cmd -H 'Authorization: token $GITHUB_API_TOKEN'"
 fi
-cmd="$cmd $releases_path"
+cmd="$cmd ${releases_path}?per_page=100"
 
 # stolen from https://github.com/rbenv/ruby-build/pull/631/files#diff-fdcfb8a18714b33b07529b7d02b54f1dR942
 function sort_versions() {
