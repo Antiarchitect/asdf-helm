@@ -40,19 +40,22 @@ install_helm() {
 
 # getArch discovers the architecture for this system.
 getArch() {
-  ARCH=$(uname -m)
-  case $ARCH in
-    armv5*) ARCH="armv5";;
-    armv6*) ARCH="armv6";;
-    armv7*) ARCH="arm";;
-    arm64) ARCH="arm64";; # TODO Fix to proper when M1 packages are available
-    aarch64) ARCH="arm64";;
-    x86) ARCH="386";;
-    x86_64) ARCH="amd64";;
-    i686) ARCH="386";;
-    i386) ARCH="386";;
-  esac
-  echo "$ARCH"
+  if [[ $ASDF_HELM_OVERWRITE_ARCH != "" ]]; then
+    echo "$ASDF_HELM_OVERWRITE_ARCH"
+  else
+    ARCH=$(uname -m)
+    case $ARCH in
+      armv5*) ARCH="armv5";;
+      armv6*) ARCH="armv6";;
+      armv7*) ARCH="arm";;
+      arm64) ARCH="arm64";; # TODO Fix to proper when M1 packages are available
+      aarch64) ARCH="arm64";;
+      x86) ARCH="386";;
+      x86_64) ARCH="amd64";;
+      i686) ARCH="386";;
+      i386) ARCH="386";;
+    esac
+  fi
 }
 
 get_filename() {
