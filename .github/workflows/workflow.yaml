@@ -1,4 +1,4 @@
-name: Test
+name: Plugin Test
 
 on:
   push:
@@ -13,15 +13,17 @@ on:
     - cron: "0 0 * * 5"
 
 jobs:
-  build:
+  plugin_test:
     strategy:
+      fail-fast: false
       matrix:
-        os: [ubuntu-latest, macOS-latest]
-
+        os:
+          - alpine-latest
+          - macOS-latest
+          - ubuntu-latest
     runs-on: ${{ matrix.os }}
-
     steps:
       - name: asdf plugin test
-        uses: asdf-vm/actions/plugin-test@v1.1.0
+        uses: asdf-vm/actions/plugin-test@v3
         with:
           command: helm version

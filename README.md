@@ -1,6 +1,6 @@
 # asdf-helm
 
-![GitHub Actions Status](https://github.com/Antiarchitect/asdf-helm/workflows/Test/badge.svg?branch=master)
+![GitHub Actions Status](https://github.com/Antiarchitect/asdf-helm/actions/workflows/workflow.yaml/badge.svg)
 
 [Helm](https://github.com/helm/helm) plugin for [asdf](https://github.com/asdf-vm/asdf) version manager
 
