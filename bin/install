@@ -23,7 +23,23 @@ install_helm() {
   local download_path="$tmp_download_dir/$(get_filename $version $platform)"
 
   echo "Downloading helm from ${download_url} to ${download_path}"
-  curl --retry 10 --retry-delay 2 -fLo $download_path $download_url || { echo "Could not download $download_url" ; exit 1 ; }
+
+  # capture error message from curl in memory
+  curl --retry 10 --retry-delay 2 -fLo $download_path $download_url 2>/tmp/curl_error
+  ERROR=$(</tmp/curl_error)
+
+  # retry with http1.1 if http2 error
+  if [[ $ERROR == *"HTTP/2 stream 0 was not closed cleanly"* ]]; then
+    echo $ERROR
+    echo "Retrying with --http1.1"
+    curl --http1.1 --retry 10 --retry-delay 2 -fLo $download_path $download_url
+  fi
+
+  if [ $? -ne 0 ]; then
+    echo $ERROR
+    echo "Failed to download helm from ${download_url}"
+    exit 1
+  fi
 
   echo "Creating bin directory"
   mkdir -p "${bin_install_path}"
@@ -36,7 +52,6 @@ install_helm() {
   cp ${tmp_download_dir}/${platform}/helm ${bin_install_path}
   chmod +x ${binary_path}
 }
-
 
 # getArch discovers the architecture for this system.
 getArch() {
