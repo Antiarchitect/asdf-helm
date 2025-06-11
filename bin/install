@@ -21,12 +21,13 @@ install_helm() {
   fi
 
   local download_path="$tmp_download_dir/$(get_filename $version $platform)"
+  local error_file_path="$tmp_download_dir/curl_error"
 
   echo "Downloading helm from ${download_url} to ${download_path}"
 
   # capture error message from curl in memory
-  curl --retry 10 --retry-delay 2 -fLo $download_path $download_url 2>/tmp/curl_error
-  ERROR=$(</tmp/curl_error)
+  curl --retry 10 --retry-delay 2 -fLo $download_path $download_url 2>$error_file_path
+  ERROR=$(<$error_file_path)
 
   # retry with http1.1 if http2 error
   if [[ $ERROR == *"HTTP/2 stream 0 was not closed cleanly"* ]]; then
