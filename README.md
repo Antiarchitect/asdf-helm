@@ -7,7 +7,7 @@
 ## Install
 
 ```
-asdf plugin-add helm https://github.com/Antiarchitect/asdf-helm.git
+asdf plugin add helm https://github.com/Antiarchitect/asdf-helm.git
 ```
 
 ### Environment Variable Options
